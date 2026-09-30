@@ -1,0 +1,19 @@
+{
+  "name": "Revert — a gentle path into Islam",
+  "short_name": "Revert",
+  "description": "First steps in Islam, prayer, the heart of Islam with authentic hadith, learning to read the Qur'an, and a community for new Muslims — in 10 languages.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#0E1418",
+  "lang": "en",
+  "dir": "auto",
+  "categories": ["education", "lifestyle", "books"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

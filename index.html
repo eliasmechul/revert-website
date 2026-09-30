@@ -831,6 +831,8 @@ header.hero .btn.start:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .lockup{display:flex;align-items:center;gap:18px;margin:4px 0 12px}
 .lockup .logo{width:74px;height:74px;margin:0;flex:none}
 .lockup .logo-ground{stroke:rgba(233,193,104,.55);stroke-width:1.2}
+.lockup .logo-ground{fill:#0E151D;stroke:rgba(239,199,122,.7);stroke-width:1.6}
+.lockup .logo-dot{filter:drop-shadow(0 0 3px rgba(239,199,122,.95))}
 header.hero h1#title{font-family:"Cormorant Garamond","Palatino Linotype",Georgia,serif;font-weight:600;font-size:clamp(52px,8.5vw,88px);line-height:.95;letter-spacing:.01em;margin:0;
   background:linear-gradient(100deg,#FFFFFF 0%,#FFFFFF 40%,#F3D58E 50%,#FFFFFF 60%,#FFFFFF 100%);background-size:280% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;
   text-shadow:none;filter:drop-shadow(0 4px 18px rgba(233,193,104,.25))}
@@ -1717,28 +1719,28 @@ html[lang="ar"] :is(.pr-head,.heart-head,.dh-head,.qr-head,.com-head,.qa-head) h
 /* Website: no separate bar. The menu floats over the top of each page's opening scene and fades into it;
    once you scroll, a soft see-through glass keeps it readable, still without a hard edge.
    --tb-h is the bar's height, measured by the page (it grows when the menu wraps on phones). */
-html:not(.app){--tb-h:64px}
-html:not(.app) .topbar{margin-bottom:calc(-1 * var(--tb-h))!important;border-bottom:0;box-shadow:none;
+html{--tb-h:64px}
+html .topbar{margin-bottom:calc(-1 * var(--tb-h))!important;border-bottom:0;box-shadow:none;
   background:linear-gradient(180deg,rgba(8,12,18,.55),rgba(8,12,18,0));backdrop-filter:none;-webkit-backdrop-filter:none;
   transition:background .35s ease,backdrop-filter .35s ease}
-html:not(.app) .topbar.scrolled{background:linear-gradient(180deg,rgba(10,15,21,.78),rgba(10,15,21,.55));
+html .topbar.scrolled{background:linear-gradient(180deg,rgba(10,15,21,.78),rgba(10,15,21,.55));
   backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);box-shadow:0 18px 30px -24px rgba(0,0,0,.8)}
-html:not(.app) .topbar .acct-btn,html:not(.app) .topbar #lang{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)}
-html:not(.app) .view>header.hero:first-child{padding-top:calc(var(--tb-h) + 40px)}
-html:not(.app) :is(.pr-head,.qr-head,.com-head,.qa-head){padding-top:calc(var(--tb-h) + clamp(40px,8vh,100px))!important}
-html:not(.app) .view>.subnav{padding-top:calc(var(--tb-h) + 14px)}
-@media (max-width:640px){html:not(.app) .view>header.hero:first-child{padding-top:calc(var(--tb-h) + 24px)}}
-@media (prefers-reduced-motion:reduce){html:not(.app) .topbar{transition:none}}
+html .topbar .acct-btn,html .topbar #lang{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16)}
+html .view>header.hero:first-child{padding-top:calc(var(--tb-h) + 40px)}
+html :is(.pr-head,.qr-head,.com-head,.qa-head){padding-top:calc(var(--tb-h) + clamp(40px,8vh,100px))!important}
+html .view>.subnav{padding-top:calc(var(--tb-h) + 14px)}
+@media (max-width:640px){html .view>header.hero:first-child{padding-top:calc(var(--tb-h) + 24px)}}
+@media (prefers-reduced-motion:reduce){html .topbar{transition:none}}
 /* The menu as a piece of the night scene: three floating glass pieces edged in gold
    (logo · menu capsule · account and language). The current page is marked by a soft gold light
    that glides between the menu items, with a small glowing dot beneath — the same dot as in the logo. */
-html:not(.app) .topbar{--glass:rgba(12,18,26,.42);--glass-edge:rgba(239,199,122,.24);gap:16px;padding-top:14px;padding-bottom:14px;animation:tbIn .8s cubic-bezier(.2,.7,.2,1) both}
+html .topbar{--glass:rgba(12,18,26,.42);--glass-edge:rgba(239,199,122,.24);gap:16px;padding-top:14px;padding-bottom:14px;animation:tbIn .8s cubic-bezier(.2,.7,.2,1) both}
 @keyframes tbIn{from{opacity:0;transform:translateY(-10px)}}
-html:not(.app) .topbar.scrolled{--glass:rgba(12,18,26,.72);background:linear-gradient(180deg,rgba(8,12,18,.55),rgba(8,12,18,0));backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
-html:not(.app) .topbar .mini-logo{width:34px;height:34px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45))}
-html:not(.app) .topbar .mini-logo rect{fill:#0E151D;stroke:rgba(239,199,122,.7);stroke-width:2.5}
-html:not(.app) .topbar .mini-logo circle{fill:#FFF4DA;filter:drop-shadow(0 0 4px rgba(239,199,122,.95))}
-html:not(.app) .topbar .brand-word{font-size:24px;letter-spacing:.06em;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+html .topbar.scrolled{--glass:rgba(12,18,26,.72);background:linear-gradient(180deg,rgba(8,12,18,.55),rgba(8,12,18,0));backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+html .topbar .mini-logo{width:34px;height:34px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45))}
+html .topbar .mini-logo rect{fill:#0E151D;stroke:rgba(239,199,122,.7);stroke-width:2.5}
+html .topbar .mini-logo circle{fill:#FFF4DA;filter:drop-shadow(0 0 4px rgba(239,199,122,.95))}
+html .topbar .brand-word{font-size:24px;letter-spacing:.06em;text-shadow:0 2px 12px rgba(0,0,0,.4)}
 html:not(.app) .topbar .tabs{flex:0 1 auto;margin-inline:auto;padding:5px;gap:2px;border-radius:999px;
   background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 12px 34px -16px rgba(0,0,0,.65);transition:background .35s ease}
@@ -1749,11 +1751,11 @@ html:not(.app) .topbar .tab-ind{--ind-pad:0;top:5px;bottom:auto;height:calc(100%
   background:linear-gradient(180deg,rgba(239,199,122,.2),rgba(239,199,122,.08));box-shadow:inset 0 0 0 1px rgba(239,199,122,.38),0 0 22px -4px rgba(239,199,122,.45)}
 html:not(.app) .topbar .tab-ind::after{content:"";position:absolute;left:50%;bottom:2px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#FFE7B0;box-shadow:0 0 6px 1px rgba(239,199,122,.9)}
 html:not(.app) .topbar .badge{background:linear-gradient(180deg,#F3D48F,#D9A94F);box-shadow:0 0 12px -2px rgba(239,199,122,.6)}
-html:not(.app) .topbar .acct-btn{background:var(--glass);border-color:var(--glass-edge);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 12px 34px -16px rgba(0,0,0,.65)}
-html:not(.app) .topbar .langpick{padding:3px 4px 3px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 12px 34px -16px rgba(0,0,0,.65)}
-html:not(.app) .topbar #lang{background:transparent;border:0;border-radius:999px;padding:4px 2px 4px 4px;width:auto;max-width:104px;field-sizing:content;font-size:14px}
-html:not(.app) .topbar .langpick{gap:2px;padding:2px 6px 2px 10px}
-html:not(.app) .topbar .langpick svg{width:16px;height:16px}
+html .topbar .acct-btn{background:var(--glass);border-color:var(--glass-edge);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 12px 34px -16px rgba(0,0,0,.65)}
+html .topbar .langpick{padding:3px 4px 3px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 12px 34px -16px rgba(0,0,0,.65)}
+html .topbar #lang{background:transparent;border:0;border-radius:999px;padding:4px 2px 4px 4px;width:auto;max-width:104px;field-sizing:content;font-size:14px}
+html .topbar .langpick{gap:2px;padding:2px 6px 2px 10px}
+html .topbar .langpick svg{width:16px;height:16px}
 @media (max-width:1240px){html:not(.app) .topbar .tabs button{padding:8px 11px}html:not(.app) .topbar{gap:10px}}
 html:not(.app) .topbar{padding-inline:max(16px,calc(50vw - 690px))}
 @media (max-width:900px){
@@ -1763,31 +1765,29 @@ html:not(.app) .topbar{padding-inline:max(16px,calc(50vw - 690px))}
 }
 @media (max-width:1100px) and (min-width:901px){html:not(.app) .topbar .tabs .badge{display:none}}
 @media (max-width:1100px) and (min-width:901px){html:not(.app) .topbar .brand-word{display:none}html:not(.app) .topbar .langpick svg{display:none}html:not(.app) .topbar .langpick{padding-left:4px}}
-html:not(.app) .topbar :is(.acct-btn,.langpick):hover{border-color:rgba(239,199,122,.55)}
+html .topbar :is(.acct-btn,.langpick):hover{border-color:rgba(239,199,122,.55)}
 @media (max-width:700px){
   html:not(.app) .topbar{padding-top:10px;padding-bottom:8px;row-gap:10px}
   html:not(.app) .topbar .tabs{margin-inline:0;flex:1 0 100%}
   html:not(.app) .topbar .brand-mini{margin-inline-end:auto}
 }
-@media (prefers-reduced-motion:reduce){html:not(.app) .topbar{animation:none}}
+@media (prefers-reduced-motion:reduce){html .topbar{animation:none}}
 
 /* ===== Installed app: a bottom tab bar with icons, a slim top bar (html.app) ===== */
 html.app body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent}
 html.app .wrap{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 html.app .topbar{flex-wrap:nowrap;padding-top:calc(8px + env(safe-area-inset-top,0px));padding-bottom:8px;top:0}
 html.app .topbar .brand-mini{margin-inline-end:auto}
-html.app .topbar{background:rgba(14,20,24,.94);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:none;color:#F1EEE7}
 html.app .topbar .brand-word{display:inline;color:#F1EEE7}
-html.app .topbar .mini-logo rect{stroke:rgba(239,199,122,.55);stroke-width:3}
-html.app .topbar .acct-btn{background:rgba(255,255,255,.06);color:#F1EEE7;border-color:rgba(255,255,255,.18)}
-html.app .topbar .langpick{color:#B9C4CB}
-html.app .topbar #lang{max-width:118px;background:rgba(255,255,255,.06);color:#F1EEE7;border-color:rgba(255,255,255,.18);color-scheme:dark}
 html.app #viewTabs{position:fixed;z-index:44;inset-inline:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;padding:6px;overflow:visible;
   border-radius:24px;background:rgba(14,20,24,.95);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 14px 34px -10px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.08)}
 html.app #viewTabs button{flex-direction:column;justify-content:center;gap:3px;min-width:0;padding:7px 2px 6px;border-radius:18px;font-size:10.5px;line-height:1.2;color:#9FB0BA;background:none;text-align:center}
 html.app #viewTabs button>span:first-child,html.app #viewTabs button{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 html.app #viewTabs button::before{content:"";flex:none;width:24px;height:24px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat;transition:transform .25s cubic-bezier(.3,1.4,.5,1)}
-html.app #viewTabs button[aria-selected="true"]{color:#EFC77A;background:rgba(239,199,122,.13)}
+html.app #viewTabs button[aria-selected="true"]{color:#F6D58E;background:radial-gradient(circle at 50% calc(100% - 4px),#FFE7B0 0 1.8px,transparent 2.4px),linear-gradient(180deg,rgba(239,199,122,.2),rgba(239,199,122,.08));box-shadow:inset 0 0 0 1px rgba(239,199,122,.38),0 0 22px -4px rgba(239,199,122,.45)}
+/* the app wears the same gold-edged night glass as the website */
+html.app #viewTabs{background:rgba(12,18,26,.78);box-shadow:0 14px 34px -10px rgba(0,0,0,.6),inset 0 0 0 1px rgba(239,199,122,.24),inset 0 1px 0 rgba(255,255,255,.07)}
+html.app .topbar{gap:10px;animation:none;transform:none;backdrop-filter:none;-webkit-backdrop-filter:none;filter:none}
 html.app #viewTabs button[aria-selected="true"]::before{transform:translateY(-1px) scale(1.08)}
 html.app #viewTabs button:active::before{transform:scale(.9)}
 html.app #viewTabs .badge,html.app .tab-ind{display:none}
@@ -1856,7 +1856,7 @@ html.app #sheet{padding-bottom:env(safe-area-inset-bottom,0px)}
           <defs><radialGradient id="logoGlow"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".35" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
           <rect class="logo-ground" x=".5" y=".5" width="99" height="99" rx="14" fill="#000"/>
           <circle class="logo-halo" cx="50" cy="50" r="48" fill="url(#logoGlow)"/>
-          <circle class="logo-dot" cx="50" cy="50" r="7.5" fill="#fff"/>
+          <circle class="logo-dot" cx="50" cy="50" r="5.5" fill="#FFF4DA"/>
         </svg>
           <h1 id="title"></h1>
         </div>

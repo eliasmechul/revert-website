@@ -3775,11 +3775,11 @@ async function removeWorld(){
 }
 function renderWorld(){
   const u=L().ui, box=$("worldCard"); if(!box)return;
-  const g=wGroups(), members=g.reduce((a,x)=>a+x.n,0), mine=me()&&world.mine;
+  const g=wGroups(), mine=me()&&world.mine;
   const pins=g.map(p=>{const r=Math.min(2.4,.9+Math.sqrt(p.n)*.45);
     return `<g class="w-pin${p.ex?" ex":""}${p.me?" me":""}" transform="translate(${wX(p.lng)} ${wY(p.lat)})"><circle class="w-halo" r="${(r*2.3).toFixed(2)}"/><circle class="w-core" r="${r.toFixed(2)}"/><title>${esc(p.city)} · ${fmt(u.wHere,{n:p.n})}${p.ex?" · "+u.wExample:""}</title></g>`;}).join("");
   const pick=world.open&&world.pick?`<g class="w-pick" transform="translate(${wX(world.pick.lng)} ${wY(world.pick.lat)})"><circle r="1.6"/><circle class="w-ring" r="3.6"/></g>`:"";
-  box.innerHTML=`<div class="w-head"><div><h3 class="w-title">${u.wTitle}</h3><p class="w-count">${fmt(u.wCount,{n:members,c:g.length})}${LIVE?"":" · "+u.wExample}</p></div>
+  box.innerHTML=`<div class="w-head"><div><h3 class="w-title">${u.wTitle}</h3></div>
     <div class="w-acts">${mine?`<button type="button" class="btn ghost" data-w="open">${u.wChange}</button><button type="button" class="btn ghost" data-w="remove">${u.wRemove}</button>`
       :world.open?"":`<button type="button" class="btn primary" data-w="open">${u.wAdd}</button>`}</div></div>
     <svg class="w-map${world.open?" picking":""}" id="worldMap" viewBox="0 0 180 67" role="img" aria-label="${esc(u.wTitle)}"><g class="w-land">${wLandSVG()}</g>${pins}${pick}</svg>

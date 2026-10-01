@@ -1731,47 +1731,15 @@ html :is(.pr-head,.qr-head,.com-head,.qa-head){padding-top:calc(var(--tb-h) + cl
 html .view>.subnav{padding-top:calc(var(--tb-h) + 14px)}
 @media (max-width:640px){html .view>header.hero:first-child{padding-top:calc(var(--tb-h) + 24px)}}
 @media (prefers-reduced-motion:reduce){html .topbar{transition:none}}
-/* The menu as a piece of the night scene: three floating glass pieces edged in gold
-   (logo · menu capsule · account and language). The current page is marked by a soft gold light
-   that glides between the menu items, with a small glowing dot beneath — the same dot as in the logo. */
-html .topbar{--glass:rgba(12,18,26,.42);--glass-edge:rgba(239,199,122,.24);gap:16px;padding-top:14px;padding-bottom:14px;animation:tbIn .8s cubic-bezier(.2,.7,.2,1) both}
-@keyframes tbIn{from{opacity:0;transform:translateY(-10px)}}
-html .topbar.scrolled{--glass:rgba(12,18,26,.72);background:linear-gradient(180deg,rgba(8,12,18,.55),rgba(8,12,18,0));backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
-html .topbar .mini-logo{width:34px;height:34px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45))}
-html .topbar .mini-logo rect{fill:#0E151D;stroke:rgba(239,199,122,.7);stroke-width:2.5}
-html .topbar .mini-logo circle{fill:#FFF4DA;filter:drop-shadow(0 0 4px rgba(239,199,122,.95))}
-html .topbar .brand-word{font-size:24px;letter-spacing:.06em;text-shadow:0 2px 12px rgba(0,0,0,.4)}
-html:not(.app) .topbar .tabs{flex:0 1 auto;margin-inline:auto;padding:5px;gap:2px;border-radius:999px;
-  background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 12px 34px -16px rgba(0,0,0,.65);transition:background .35s ease}
-html:not(.app) .topbar .tabs button{position:relative;z-index:1;padding:8px 15px;border-radius:999px;font-size:14.5px;letter-spacing:.01em;color:#C7D0D6}
-html:not(.app) .topbar .tabs button:hover{color:#FFF;background:rgba(255,255,255,.06)}
-html:not(.app) .topbar .tabs button[aria-selected="true"]{color:#F6D58E;background:none}
-html:not(.app) .topbar .tab-ind{--ind-pad:0;top:5px;bottom:auto;height:calc(100% - 10px);z-index:0;border-radius:999px;
-  background:linear-gradient(180deg,rgba(239,199,122,.2),rgba(239,199,122,.08));box-shadow:inset 0 0 0 1px rgba(239,199,122,.38),0 0 22px -4px rgba(239,199,122,.45)}
-html:not(.app) .topbar .tab-ind::after{content:"";position:absolute;left:50%;bottom:2px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#FFE7B0;box-shadow:0 0 6px 1px rgba(239,199,122,.9)}
-html:not(.app) .topbar .badge{background:linear-gradient(180deg,#F3D48F,#D9A94F);box-shadow:0 0 12px -2px rgba(239,199,122,.6)}
+/* The compact profile and language buttons: small glass pills with a thin gold edge */
+html .topbar{--glass:rgba(12,18,26,.42);--glass-edge:rgba(239,199,122,.24)}
+html .topbar.scrolled{--glass:rgba(12,18,26,.72)}
 html .topbar .acct-btn{background:var(--glass);border-color:var(--glass-edge);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 12px 34px -16px rgba(0,0,0,.65)}
 html .topbar .langpick{padding:3px 4px 3px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 12px 34px -16px rgba(0,0,0,.65)}
 html .topbar #lang{background:transparent;border:0;border-radius:999px;padding:4px 2px 4px 4px;width:auto;max-width:104px;field-sizing:content;font-size:14px}
 html .topbar .langpick{gap:2px;padding:2px 6px 2px 10px}
 html .topbar .langpick svg{width:16px;height:16px}
-@media (max-width:1240px){html:not(.app) .topbar .tabs button{padding:8px 11px}html:not(.app) .topbar{gap:10px}}
-html:not(.app) .topbar{padding-inline:max(16px,calc(50vw - 690px))}
-@media (max-width:900px){
-  html:not(.app) .topbar{flex-wrap:wrap;row-gap:10px}
-  html:not(.app) .topbar .tabs{order:3;flex:1 0 100%;margin-inline:0;justify-content:safe center}
-  html:not(.app) .topbar .brand-mini{margin-inline-end:auto}
-}
-@media (max-width:1100px) and (min-width:901px){html:not(.app) .topbar .tabs .badge{display:none}}
-@media (max-width:1100px) and (min-width:901px){html:not(.app) .topbar .brand-word{display:none}html:not(.app) .topbar .langpick svg{display:none}html:not(.app) .topbar .langpick{padding-left:4px}}
 html .topbar :is(.acct-btn,.langpick):hover{border-color:rgba(239,199,122,.55)}
-@media (max-width:700px){
-  html:not(.app) .topbar{padding-top:10px;padding-bottom:8px;row-gap:10px}
-  html:not(.app) .topbar .tabs{margin-inline:0;flex:1 0 100%}
-  html:not(.app) .topbar .brand-mini{margin-inline-end:auto}
-}
-@media (prefers-reduced-motion:reduce){html .topbar{animation:none}}
 
 /* ===== Installed app: a bottom tab bar with icons, a slim top bar (html.app) ===== */
 html.app body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent}

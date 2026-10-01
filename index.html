@@ -507,19 +507,19 @@ html[dir="rtl"] .station .h-tr,html[lang="zh"] .station .h-tr{font-style:normal}
 .com-head h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.2;margin:0 0 8px;color:var(--lapis)}
 .com-preview{margin:10px 0 0;padding:10px 14px;border-radius:6px;background:color-mix(in srgb,var(--gold) 14%,transparent);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);font-size:14px}
 /* Around the world: a map made of dots, with a gold light for every city members come from */
-.world-card{position:relative;margin:0 0 28px;padding:20px 22px 16px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(239,199,122,.2);box-shadow:0 24px 50px -30px rgba(0,0,0,.7)}
+.world-card{position:relative;margin:0 0 28px;padding:20px 22px 16px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);box-shadow:0 24px 50px -30px rgba(0,0,0,.5)}
 .w-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 16px;margin-bottom:8px}
 .w-title{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;font-weight:600;color:var(--ink)}
 .w-count{margin:2px 0 0;color:var(--gold);font-size:14px;letter-spacing:.04em}
 .w-acts{display:flex;flex-wrap:wrap;gap:8px}
 .w-map{display:block;width:100%;height:auto;overflow:visible;touch-action:manipulation}
 .w-map.picking{cursor:crosshair}
-.w-land circle{fill:rgba(255,255,255,.16)}
-.w-pin .w-core{fill:#FFE3A6}
-.w-pin .w-halo{fill:rgba(239,199,122,.22);transform-box:fill-box;transform-origin:center;animation:wPulse 3.2s ease-in-out infinite}
-.w-pin.ex .w-core{fill:rgba(255,227,166,.6)}
-.w-pin.me .w-core{fill:#fff}
-.w-pick circle{fill:#fff}.w-pick .w-ring{fill:none;stroke:#EFC77A;stroke-width:.5}
+.w-land circle{fill:color-mix(in srgb,var(--ink) 20%,transparent)}
+.w-pin .w-core{fill:var(--gold);stroke:color-mix(in srgb,var(--gold) 40%,#fff);stroke-width:.25}
+.w-pin .w-halo{fill:color-mix(in srgb,var(--gold) 28%,transparent);transform-box:fill-box;transform-origin:center;animation:wPulse 3.2s ease-in-out infinite}
+.w-pin.ex .w-core{fill:color-mix(in srgb,var(--gold) 60%,transparent)}
+.w-pin.me .w-core{fill:var(--ink)}
+.w-pick circle{fill:var(--ink)}.w-pick .w-ring{fill:none;stroke:var(--gold);stroke-width:.5}
 @keyframes wPulse{50%{transform:scale(1.45);opacity:.45}}
 .w-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;align-items:center;margin-top:10px}
 .w-form input{font:inherit;color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:999px;padding:8px 14px}

@@ -1741,37 +1741,13 @@ html .topbar .langpick{gap:2px;padding:2px 6px 2px 10px}
 html .topbar .langpick svg{width:16px;height:16px}
 html .topbar :is(.acct-btn,.langpick):hover{border-color:rgba(239,199,122,.55)}
 
-/* ===== Installed app: a bottom tab bar with icons, a slim top bar (html.app) ===== */
-html.app body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent}
-html.app .wrap{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
-html.app .topbar{flex-wrap:nowrap;padding-top:calc(8px + env(safe-area-inset-top,0px));padding-bottom:8px;top:0}
-html.app .topbar .brand-mini{margin-inline-end:auto}
-html.app .topbar .brand-word{display:inline;color:#F1EEE7}
-html.app #viewTabs{position:fixed;z-index:44;inset-inline:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;padding:6px;overflow:visible;
-  border-radius:24px;background:rgba(14,20,24,.95);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 14px 34px -10px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.08)}
-html.app #viewTabs button{flex-direction:column;justify-content:center;gap:3px;min-width:0;padding:7px 2px 6px;border-radius:18px;font-size:10.5px;line-height:1.2;color:#9FB0BA;background:none;text-align:center}
-html.app #viewTabs button>span:first-child,html.app #viewTabs button{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-html.app #viewTabs button::before{content:"";flex:none;width:24px;height:24px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat;transition:transform .25s cubic-bezier(.3,1.4,.5,1)}
-html.app #viewTabs button[aria-selected="true"]{color:#F6D58E;background:radial-gradient(circle at 50% calc(100% - 4px),#FFE7B0 0 1.8px,transparent 2.4px),linear-gradient(180deg,rgba(239,199,122,.2),rgba(239,199,122,.08));box-shadow:inset 0 0 0 1px rgba(239,199,122,.38),0 0 22px -4px rgba(239,199,122,.45)}
-/* the app wears the same gold-edged night glass as the website */
-html.app #viewTabs{background:rgba(12,18,26,.78);box-shadow:0 14px 34px -10px rgba(0,0,0,.6),inset 0 0 0 1px rgba(239,199,122,.24),inset 0 1px 0 rgba(255,255,255,.07)}
-html.app .topbar{gap:10px;animation:none;transform:none;backdrop-filter:none;-webkit-backdrop-filter:none;filter:none}
-html.app #viewTabs button[aria-selected="true"]::before{transform:translateY(-1px) scale(1.08)}
-html.app #viewTabs button:active::before{transform:scale(.9)}
-html.app #viewTabs .badge,html.app .tab-ind{display:none}
-html.app #viewTabs [data-view="learn"]{--ic:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 20c3-1 5-4 8-4s5 3 8 4%22/%3E%3Ccircle cx=%2212%22 cy=%228%22 r=%223%22/%3E%3Cpath d=%22M12 2v1M5 8H4M20 8h-1M6.5 3.5l.7.7M17.5 3.5l-.7.7%22/%3E%3C/svg%3E")}
-html.app #viewTabs [data-view="pray"]{--ic:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3 21h18%22/%3E%3Cpath d=%22M6 21v-8a6 6 0 0 1 12 0v8%22/%3E%3Cpath d=%22M12 7V3M10.5 4.5h3%22/%3E%3Cpath d=%22M10 21v-4a2 2 0 0 1 4 0v4%22/%3E%3C/svg%3E")}
-html.app #viewTabs [data-view="heart"]{--ic:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 5.6 5 5 0 0 1 21.2 11C19 15.6 12 20 12 20z%22/%3E%3C/svg%3E")}
-html.app #viewTabs [data-view="quran"]{--ic:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 6c-2-1.5-5-2-8-1.5V19c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5c-3-.5-6 0-8 1.5z%22/%3E%3Cpath d=%22M12 6v14.5%22/%3E%3C/svg%3E")}
-html.app #viewTabs [data-view="community"]{--ic:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%229%22 cy=%228%22 r=%223%22/%3E%3Cpath d=%22M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6%22/%3E%3Ccircle cx=%2217%22 cy=%229%22 r=%222.4%22/%3E%3Cpath d=%22M16 14.2c2.9.4 5 2.8 5 5.8%22/%3E%3C/svg%3E")}
-html.app #viewTabs [data-view="questions"]{--ic:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 5h16v11H9l-5 4z%22/%3E%3Cpath d=%22M9.8 9a2.2 2.2 0 1 1 3 2c-.6.3-.8.7-.8 1.3%22/%3E%3Ccircle cx=%2212%22 cy=%2214.2%22 r=%22.4%22 fill=%22%23000%22/%3E%3C/svg%3E")}
-html.app .snd-fab{bottom:calc(92px + env(safe-area-inset-bottom,0px))!important}
-/* Netlify's small "Powered by" label sits bottom-right: the bar and the sound button move up above it */
-html.app.nf-label #viewTabs{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
-html.app.nf-label .wrap{padding-bottom:calc(158px + env(safe-area-inset-bottom,0px))}
-html.app.nf-label .snd-fab{bottom:calc(158px + env(safe-area-inset-bottom,0px))!important}
-html.app #sheet{padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (min-width:900px){html.app #viewTabs{grid-template-columns:repeat(6,minmax(0,1fr));max-width:640px}html.app #viewTabs button{font-size:12px}}
+/* ===== Installed app (opened from the home screen): exactly the website's design.
+   Only the notch at the top and the home bar at the bottom get room (html.standalone). ===== */
+html.standalone body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent}
+html.standalone .topbar{top:0;padding-top:calc(10px + env(safe-area-inset-top,0px))}
+html.standalone .wrap{padding-bottom:env(safe-area-inset-bottom,0px)}
+html.standalone .snd-fab{margin-bottom:env(safe-area-inset-bottom,0px)}
+html.standalone #sheet{padding-bottom:env(safe-area-inset-bottom,0px)}
 </style>
 </head>
 <body>
@@ -2557,7 +2533,7 @@ if(m&&+m[1]>=1&&+m[1]<=BASE.length)state.current=+m[1]-1;
 const $=id=>document.getElementById(id);
 /* Installed app (opened from the home screen): bottom tab bar and a slim top bar. ?app=1 shows it in a browser too. */
 const APP=(()=>{try{return matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||navigator.standalone===true||/[?&]app=1/.test(location.search||"");}catch(e){return false;}})();
-if(APP){document.documentElement.classList.add("app"); document.body.appendChild($("viewTabs"));}
+if(APP)document.documentElement.classList.add("standalone");   /* the installed app looks exactly like the website */
 const list=$("stepList"), lesson=$("lesson"), sel=$("lang");
 sel.innerHTML=LANG_ORDER.map(c=>`<option value="${c}" lang="${c}">${I18N[c].label}</option>`).join("");
 sel.onchange=()=>{state.lang=sel.value;save();renderAll();};
@@ -5051,7 +5027,7 @@ function renderStart(){
 }
 function renderTabs(){
   const u=L().ui;
-  $("tabLearn").textContent=APP?u.tbLearn:u.navLearn; $("tabPr").textContent=APP?u.tbPray:u.prTab; $("tabHeart").textContent=APP?u.tbHeart:u.heartTab; $("tabCom").textContent=APP?u.tbCom:u.comTab; $("tabQuran").textContent=APP?u.tbQuran:u.qrTitle; $("tabAdv").textContent=u.advanced; $("tabQ").textContent=APP?u.tbQ:u.qTitle;
+  $("tabLearn").textContent=u.navLearn; $("tabPr").textContent=u.prTab; $("tabHeart").textContent=u.heartTab; $("tabCom").textContent=u.comTab; $("tabQuran").textContent=u.qrTitle; $("tabAdv").textContent=u.advanced; $("tabQ").textContent=u.qTitle;
   $("viewTabs").setAttribute("aria-label",u.pathTitle);
   requestAnimationFrame(moveIndicator);
 }

@@ -1424,14 +1424,16 @@ html[dir="rtl"] .sc-ico{transform:scaleX(-1)}
 .scene.playing .v-prog{opacity:1}
 .scene.learned .sc-name::after{content:" ✓";color:var(--gold)}
 
-/* coming alive: from mist into focus (only once the script is running, so the page is readable without it) */
-.jny.live .scene:not(.in) .sc-art{opacity:.15;transform:scale(.93);filter:blur(10px)}
-.jny.live .scene .sc-text>*{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
-.jny.live .scene:not(.in) .sc-text>*{opacity:0;transform:translateY(18px)}
-.jny.live .scene.in .sc-text>:nth-child(2){transition-delay:.15s}
-.jny.live .scene.in .sc-text>:nth-child(3){transition-delay:.35s}
-.jny.live .scene.in .sc-text>:nth-child(4){transition-delay:.5s}
-.jny.live .scene.in .sc-text>:nth-child(5){transition-delay:.6s}
+/* coming alive: from mist into focus. Content is ALWAYS visible; the fade-in only plays once a scene
+   is recognised as on screen — so if that signal never comes (tall scenes, old Safari, cached pages), nothing stays hidden */
+.jny.live .scene.in .sc-art{animation:artIn 1.1s cubic-bezier(.2,.7,.2,1) both}
+.jny.live .scene.in .sc-text>*{animation:txtIn .9s cubic-bezier(.2,.7,.2,1) both}
+.jny.live .scene.in .sc-text>:nth-child(2){animation-delay:.15s}
+.jny.live .scene.in .sc-text>:nth-child(3){animation-delay:.35s}
+.jny.live .scene.in .sc-text>:nth-child(4){animation-delay:.5s}
+.jny.live .scene.in .sc-text>:nth-child(5){animation-delay:.6s}
+@keyframes artIn{from{opacity:.15;transform:scale(.93);filter:blur(10px)}}
+@keyframes txtIn{from{opacity:0;transform:translateY(18px)}}
 @supports (animation-timeline:view()){
   @media (prefers-reduced-motion:no-preference){
     .sc-art svg{animation:drift linear both;animation-timeline:view();animation-range:cover}
@@ -1463,7 +1465,7 @@ html[dir="rtl"] .j-walker{transform:translateX(calc(var(--p,0) * (60px - 100vw) 
 @keyframes bob{to{transform:translateY(-1.5px)}}
 
 @media (prefers-reduced-motion:reduce){
-  .jny.live .scene:not(.in) .sc-art,.jny.live .scene:not(.in) .sc-text>*{opacity:1;transform:none;filter:none}
+  .jny.live .scene.in .sc-art,.jny.live .scene.in .sc-text>*{animation:none}
   .j-cue i,.scene::before{animation:none}
 }
 /* Full width: the scenes, the header, the top bar and the area banners reach both edges of the screen */

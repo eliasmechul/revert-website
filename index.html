@@ -4808,6 +4808,7 @@ function makePoser(g){
     raf=requestAnimationFrame(tick);
   };
   return {
+    get on(){return alive;},
     play(seq){this.stop(); if(RM){this.still(seq[seq.length-1][0]);return;} alive=true; let k=0;
       const step=()=>{if(!alive)return; const [p,hold]=seq[k]; glide(p,()=>{timer=setTimeout(()=>{k=(k+1)%seq.length;step();},hold);});};
       step();},
@@ -4855,11 +4856,11 @@ function prWatch(){
   if(typeof IntersectionObserver==="undefined"){scenes.forEach((sc,i)=>{sc.classList.add("in");prPosers[i].still(loops[i][loops[i].length-1][0]);});return;}
   prObs=new IntersectionObserver(es=>es.forEach(e=>{
     const sc=e.target;
-    if(sc.dataset.i==null){if(e.isIntersecting)sc.classList.add("in");return;}
+    if(sc.dataset.i==null){if(seen(e,.35))sc.classList.add("in");return;}
     const i=+sc.dataset.i;
-    if(e.isIntersecting){sc.classList.add("in"); prPosers[i].play(loops[i]);}
-    else prPosers[i].stop();
-  }),{threshold:.35});
+    if(seen(e,.35)){if(!sc.classList.contains("in")||!prPosers[i].on){sc.classList.add("in"); prPosers[i].play(loops[i]);}}
+    else if(!e.isIntersecting)prPosers[i].stop();
+  }),{threshold:SEEN_T});
   scenes.forEach(sc=>prObs.observe(sc));
   document.querySelectorAll("#prj>.scene,#prTimes .scene,#prSurScenes .scene").forEach(sc=>prObs.observe(sc));
 }
@@ -5247,17 +5248,21 @@ function jMarkDone(){
 }
 function jumpTo(i){const sc=$("scene-"+(i+1)); if(sc)sc.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});}
 
+/* a scene counts as "in view" when 45% of it is visible — or, for scenes taller than the screen,
+   when it fills at least 40% of the screen (otherwise very tall scenes would never wake up) */
+const SEEN_T=[0,.05,.1,.15,.2,.25,.3,.35,.4,.45,.6,.8,1];
+const seen=(e,share)=>e.isIntersecting&&(e.intersectionRatio>=share||e.intersectionRect.height>=(window.innerHeight||800)*.4);
 /* scenes come alive when they reach the middle of the screen */
 function jWatch(){
   if(jObs)jObs.disconnect();
   if(typeof IntersectionObserver==="undefined"){document.querySelectorAll("#jny .scene").forEach(s=>s.classList.add("in"));return;}
   jObs=new IntersectionObserver(es=>es.forEach(e=>{
     const sc=e.target, i=sc.dataset.i==null?-1:+sc.dataset.i;
-    if(e.isIntersecting){sc.classList.add("in");
+    if(seen(e,.45)){sc.classList.add("in");
       document.querySelectorAll("#jRail button").forEach((b,k)=>b.setAttribute("aria-current",String(k===i)));
-      if(i>=0)jAnimate(i);}
-    else if(jPlay.scene===i)jAnimate(-1);
-  }),{threshold:.45});
+      if(i>=0&&jPlay.scene!==i)jAnimate(i);}
+    else if(!e.isIntersecting&&jPlay.scene===i)jAnimate(-1);
+  }),{threshold:SEEN_T});
   document.querySelectorAll("#jny .scene").forEach(s=>jObs.observe(s));
 }
 /* Wudu and Prayer play their stages by themselves while you look at them */
@@ -5291,6 +5296,19 @@ function jScrolled(){
   if(!RM){w.classList.add("walking"); clearTimeout(jWalkT); jWalkT=setTimeout(()=>w.classList.remove("walking"),260);}
 }
 window.addEventListener("scroll",()=>requestAnimationFrame(jScrolled),{passive:true});
+/* safety net: reveal any scene that is clearly on screen, even if the browser's visibility signal
+   never fires (very tall scenes, some Safari versions). Measured on scroll, resize and page changes. */
+function wakeScenes(){
+  const vh=window.innerHeight||800;
+  document.querySelectorAll(".view:not([hidden]) .jny .scene:not(.in)").forEach(sc=>{
+    const r=sc.getBoundingClientRect(); if(!r.height)return;
+    const vis=Math.min(r.bottom,vh)-Math.max(r.top,0);
+    if(vis>0&&vis>=Math.min(r.height*.45,vh*.4))sc.classList.add("in");
+  });
+}
+let wakeT=0; const wakeSoon=()=>{if(!wakeT)wakeT=setTimeout(()=>{wakeT=0;wakeScenes();},60);};
+setInterval(()=>{if(!document.hidden)wakeScenes();},700);
+window.addEventListener("scroll",wakeSoon,{passive:true}); window.addEventListener("resize",wakeSoon);
 /* the floating menu: remember its height, and give it its glass once the page has scrolled */
 (()=>{
   const tb=document.querySelector(".topbar"); if(!tb)return;
@@ -5459,7 +5477,7 @@ function showView(v,animate){
   });
   document.querySelectorAll("#viewTabs button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v||((v==="dhikr"||v==="hadith")&&b.dataset.view==="heart"))));
   document.querySelectorAll(".subnav button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.sub===v)));
-  requestAnimationFrame(()=>{try{jScrolled();}catch(e){}});
+  requestAnimationFrame(()=>{try{jScrolled();wakeScenes();}catch(e){}});
   moveIndicator();
   try{history.replaceState(null,"",v==="learn"?"#step-"+(state.current+1):"#"+v)}catch(e){}
   if(animate&&changed)window.scrollTo({top:0,behavior:RM||APP?"auto":"smooth"});

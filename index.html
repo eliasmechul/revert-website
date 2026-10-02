@@ -1362,9 +1362,13 @@ header.hero .brand-tag,header.hero .progress{display:none}
 
 /* the lesson panel */
 .sheet{position:fixed;inset:0;z-index:65;display:grid;align-items:end;justify-items:center;background:rgba(8,14,20,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fadeBg .3s ease both}
-.sheet-card{position:relative;width:min(860px,100%);max-height:calc(100% - 28px);overflow:auto;overscroll-behavior:contain;background:var(--ground);border-radius:22px 22px 0 0;
+.sheet-card{position:relative;width:min(860px,100%);max-height:calc(100% - 28px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;background:var(--ground);border-radius:22px 22px 0 0;
   padding:18px 16px calc(28px + env(safe-area-inset-bottom,0px));box-shadow:0 -20px 60px rgba(0,0,0,.35);animation:sheetUp .5s cubic-bezier(.2,1,.3,1) both}
 @keyframes sheetUp{from{transform:translateY(40px);opacity:0}}
+.sheet-card *{max-width:100%;box-sizing:border-box}
+.sheet-card,.sheet-card *{min-width:0}
+.sheet-card p,.sheet-card li,.sheet-card h2,.sheet-card h3{white-space:normal;overflow-wrap:anywhere}
+.sheet-card .pt-read,.sheet-card .pt-read *{overflow-wrap:anywhere}
 .sheet-card .modal-x{position:sticky;top:0;float:inline-end;z-index:2;background:var(--surface);box-shadow:var(--card-shadow)}
 .sheet-card .main{display:block;margin:0}
 .sheet-card nav.steps{display:none}
@@ -4956,7 +4960,7 @@ function openSurah(n){
     <div class="pr-verses">${surahRows(s)}</div>
     ${(SURAH_TAFSIR[n]||[]).map(([k,src],j)=>tafsirCard(k,src,j===0)).join("")}</div>`;
   $("sheet").hidden=false; document.documentElement.classList.add("sheet-open");
-  $("sheetCard").scrollTop=0; $("sheetClose").focus();
+  $("sheetCard").scrollTop=0; $("sheetCard").scrollLeft=0; $("sheetClose").focus({preventScroll:true});
 }
 $("prSurScenes").addEventListener("click",e=>{
   const more=e.target.closest(".sr-more"); if(more){openSurah(+more.dataset.sn);return;}
@@ -5032,7 +5036,7 @@ function openPrayer(k){
     <p class="h-ref pt-src">${srcLabel({b:1180})} · ${srcLabel({b:1182})} · ${srcLabel({m:728})}${x.witr?" · "+srcLabel({b:998}):""}</p>
   </div>`;
   $("sheet").hidden=false; document.documentElement.classList.add("sheet-open");
-  $("sheetCard").scrollTop=0; $("sheetClose").focus();
+  $("sheetCard").scrollTop=0; $("sheetCard").scrollLeft=0; $("sheetClose").focus({preventScroll:true});
 }
 $("prTimes").addEventListener("click",e=>{const b=e.target.closest(".pt-more"); if(b)openPrayer(+b.dataset.pt);});
 $("fiveList").addEventListener("click",e=>{const b=e.target.closest(".f-card"); if(b){const sc=$("pt-"+b.dataset.k); if(sc)sc.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});}});
@@ -5327,7 +5331,7 @@ function openSheet(i){
   sheetBack=document.activeElement; go(i); sheetMode="lesson";
   PANES.forEach(p=>{$(p).hidden=p!=="sheetMain";}); $("sheetT").textContent=L().ui.jMore;
   $("sheet").hidden=false; document.documentElement.classList.add("sheet-open");
-  $("sheetCard").scrollTop=0; $("sheetClose").focus();
+  $("sheetCard").scrollTop=0; $("sheetCard").scrollLeft=0; $("sheetClose").focus({preventScroll:true});
 }
 function closeSheet(){
   if($("sheet").hidden)return;
@@ -5393,7 +5397,7 @@ function openPane(id,title,mode){
   if($("sheet").hidden)sheetBack=document.activeElement;
   sheetMode=mode; PANES.forEach(p=>{$(p).hidden=p!==id;}); $("sheetT").textContent=title||"";
   $("sheet").hidden=false; document.documentElement.classList.add("sheet-open");
-  $("sheetCard").scrollTop=0; $("sheetClose").focus();
+  $("sheetCard").scrollTop=0; $("sheetCard").scrollLeft=0; $("sheetClose").focus({preventScroll:true});
 }
 /* scenes come alive as they reach the screen */
 let areaObs=null;

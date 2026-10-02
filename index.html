@@ -1374,6 +1374,11 @@ header.hero .brand-tag,header.hero .progress{display:none}
 .sheet-card nav.steps{display:none}
 .sheet-card article.lesson{box-shadow:none}
 html.sheet-open{overflow:hidden}
+/* the page never scrolls sideways: full-width sections use 100vw, which is wider than the page when the Mac shows
+   permanent scrollbars (mouse connected) — that pushed the page and the Read more panels to the left in Safari */
+html,body{overflow-x:clip;max-width:100%}
+@supports not (overflow:clip){html,body{overflow-x:hidden}}
+.sheet{overflow:hidden;width:100%;max-width:100vw;left:0;right:0}
 
 /* the scenes */
 .jny{margin:0 -16px;position:relative}

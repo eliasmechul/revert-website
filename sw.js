@@ -3,7 +3,7 @@
    - Recitations and fonts are kept the first time they load, so they also work offline later.
    - The community database, the security check and anything else from other sites always go to the internet.
    The version below changes with every build, which tells phones to pick up the new app. */
-const VERSION="2026-10-02T14:47:45.019Z", SHELL="revert-shell-"+VERSION, MEDIA="revert-media-v1";
+const VERSION="2026-10-02T14:56:13.440Z", SHELL="revert-shell-"+VERSION, MEDIA="revert-media-v1";
 const SHELL_FILES=["./","index.html","config.js","manifest.webmanifest","icons/icon-192.png","icons/icon-512.png","icons/apple-touch-icon.png","icons/favicon-32.png"];
 
 self.addEventListener("install",e=>{

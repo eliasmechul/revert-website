@@ -1105,7 +1105,8 @@ html[dir="rtl"] .dh-head{padding:34px 30px 34px 280px}
 .ts-info .ts-goal-l{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
 .ts-info .ts-done{margin:10px 0 0;font-weight:700;color:var(--gold);min-height:1.5em}
 @media (max-width:760px){.dh-grid,.ts-body{grid-template-columns:1fr}.ts-ring{justify-self:center}}
-.heal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:14px}
+.heal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px;margin-top:14px;max-width:100%}
+.heal-grid>*,.heal-card *{min-width:0;max-width:100%;overflow-wrap:anywhere}
 .heal-card{background:var(--surface);border-radius:14px;padding:18px 20px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:8px}
 .heal-card h4{margin:0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tile)}
 .heal-card .h-ar{font-family:var(--arabic);font-size:22px;line-height:1.9;direction:rtl;text-align:right;margin:0;color:var(--ink)}
@@ -1379,6 +1380,9 @@ html.sheet-open{overflow:hidden}
 /* the page never scrolls sideways: full-width sections use 100vw, which is wider than the page when the Mac shows
    permanent scrollbars (mouse connected) — that pushed the page and the Read more panels to the left in Safari */
 html,body{overflow-x:clip;max-width:100%}
+.view,.view section,.view article{max-width:100%}
+.view :is(p,li,h2,h3,h4,blockquote,cite){overflow-wrap:break-word}
+:is([class*="grid"],[class*="list"])>*{min-width:0}
 @supports not (overflow:clip){html,body{overflow-x:hidden}}
 .sheet{overflow:hidden;width:100%;max-width:100vw;left:0;right:0}
 
@@ -5324,6 +5328,18 @@ function wakeScenes(){
 let wakeT=0; const wakeSoon=()=>{if(!wakeT)wakeT=setTimeout(()=>{wakeT=0;wakeScenes();},60);};
 setInterval(()=>{if(!document.hidden)wakeScenes();},700);
 window.addEventListener("scroll",wakeSoon,{passive:true}); window.addEventListener("resize",wakeSoon);
+/* diagnostics: open the site with ?debug=1 to see how this browser measures the page (helps fix layout bugs) */
+if(/[?&]debug=1/.test(location.search||"")){
+  const box=document.createElement("pre");
+  box.style.cssText="position:fixed;left:8px;top:8px;z-index:2147483647;margin:0;padding:8px 10px;background:#ffeb3b;color:#000;font:13px/1.4 monospace;border-radius:8px;white-space:pre;pointer-events:none";
+  document.body.appendChild(box);
+  const upd=()=>{const d=document.documentElement, c=document.getElementById("sheetCard"), vv=window.visualViewport;
+    box.textContent=["window "+innerWidth+"×"+innerHeight+"  page "+d.clientWidth+"  scrollW "+d.scrollWidth,
+      "zoom(pinch) "+(vv?vv.scale.toFixed(2):"?")+"  dpr "+devicePixelRatio+"  outer "+outerWidth,
+      "panel "+(c&&!document.getElementById("sheet").hidden?Math.round(c.getBoundingClientRect().left)+"→"+Math.round(c.getBoundingClientRect().right)+" scrollW "+c.scrollWidth+"/"+c.clientWidth:"closed"),
+      "font "+getComputedStyle(d).fontSize+"  "+navigator.userAgent.replace(/.*Version\//,"Safari ").slice(0,30)].join("\n");};
+  upd(); setInterval(upd,500);
+}
 /* the floating menu: remember its height, and give it its glass once the page has scrolled */
 (()=>{
   const tb=document.querySelector(".topbar"); if(!tb)return;

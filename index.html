@@ -5386,18 +5386,6 @@ function wakeScenes(){
 let wakeT=0; const wakeSoon=()=>{if(!wakeT)wakeT=setTimeout(()=>{wakeT=0;wakeScenes();},60);};
 setInterval(()=>{if(!document.hidden)wakeScenes();},700);
 window.addEventListener("scroll",wakeSoon,{passive:true}); window.addEventListener("resize",wakeSoon);
-/* diagnostics: open the site with ?debug=1 to see how this browser measures the page (helps fix layout bugs) */
-if(/[?&]debug=1/.test(location.search||"")){
-  const box=document.createElement("pre");
-  box.style.cssText="position:fixed;left:8px;top:8px;z-index:2147483647;margin:0;padding:8px 10px;background:#ffeb3b;color:#000;font:13px/1.4 monospace;border-radius:8px;white-space:pre;pointer-events:none";
-  document.body.appendChild(box);
-  const upd=()=>{const d=document.documentElement, c=document.getElementById("sheetCard"), vv=window.visualViewport;
-    box.textContent=["window "+innerWidth+"×"+innerHeight+"  page "+d.clientWidth+"  scrollW "+d.scrollWidth,
-      "zoom(pinch) "+(vv?vv.scale.toFixed(2):"?")+"  dpr "+devicePixelRatio+"  outer "+outerWidth,
-      "panel "+(c&&!document.getElementById("sheet").hidden?Math.round(c.getBoundingClientRect().left)+"→"+Math.round(c.getBoundingClientRect().right)+" scrollW "+c.scrollWidth+"/"+c.clientWidth:"closed"),
-      "font "+getComputedStyle(d).fontSize+"  "+navigator.userAgent.replace(/.*Version\//,"Safari ").slice(0,30)].join("\n");};
-  upd(); setInterval(upd,500);
-}
 /* "Install the app": Chrome/Edge/Android get the browser's own install prompt; Safari (iPhone, iPad, Mac)
    and everything else get short steps for that device. Hidden when already running as the installed app. */
 let instPrompt=null;

@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.revertcommunity.app",
+        "sha256_cert_fingerprints": ["2A:7C:D4:65:F3:0F:6B:1A:E5:DF:D3:14:7F:BC:9A:1C:DB:72:4B:02:A7:01:C1:07:E2:F3:16:D5:FA:5E:1D:05"]
+      }
+    }]

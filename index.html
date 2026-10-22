@@ -3016,7 +3016,7 @@ $("askForm").onsubmit=async e=>{
     const c=err&&err.code;
     ans.classList.remove("pending"); ans.textContent=(err&&err.text)||"";
     if(!ans.textContent)ans.hidden=true;
-    if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(c)){askCtl=null;setAskUnavailable();}
+    if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed","unavailable"].includes(c)){askCtl=null;setAskUnavailable();}
     else if(c==="cancelled"){}
     else if(c==="rate_limited")showAskErr("errRate");
     else if(c==="daily"||c==="signin"||c==="paused")showAskErr({daily:"errDaily",signin:"askSignIn",paused:"errPaused"}[c]);
@@ -3030,6 +3030,10 @@ $("askForm").onsubmit=async e=>{
   try{sampleFn=window.claude&&window.claude.use?await window.claude.use("sample"):null;}catch(e){sampleFn=null;}
   await null;   /* let the page finish setting up, so LIVE below is ready */
   askFn=LIVE?askServer:sampleFn?(q,lang,o)=>sampleFn(askPrompt(q,lang),o):null;
+  if(LIVE){   /* on your own site: show the box only once the "ask" function has its AI key */
+    try{const r=await fetch(SB.url.replace(/\/$/,"")+"/functions/v1/ask",{headers:{apikey:SB.key,Authorization:"Bearer "+SB.key}});
+      if(!r.ok||!(await r.json()).ready)askFn=null;}catch(e){askFn=null;}
+  }
   if(!askFn)setAskUnavailable();
 })();
 

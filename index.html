@@ -1940,6 +1940,20 @@ html.standalone .topbar{top:0;padding-top:calc(10px + env(safe-area-inset-top,0p
 html.standalone .wrap{padding-bottom:env(safe-area-inset-bottom,0px)}
 html.standalone .snd-fab{margin-bottom:env(safe-area-inset-bottom,0px)}
 html.standalone #sheet{padding-bottom:env(safe-area-inset-bottom,0px)}
+/* ===== The installed app opens on a compact home, not the website's landing page ===== */
+html.standalone header.hero{min-height:0;padding:calc(76px + env(safe-area-inset-top,0px)) 20px 20px;border-radius:0 0 22px 22px;display:block}
+html.standalone header.hero .hero-inner{display:block}
+html.standalone header.hero .basmala{font-size:24px;margin:0 0 2px}
+html.standalone header.hero .basmala-tr,html.standalone header.hero .lede,html.standalone header.hero .brand-tag,html.standalone header.hero .j-cue{display:none}
+html.standalone header.hero .lockup{margin:4px 0 10px}
+html.standalone header.hero .lockup .logo{width:40px;height:40px}
+html.standalone header.hero h1{font-size:26px;margin:0}
+html.standalone header.hero .progress{display:flex;align-items:center;gap:12px;text-align:start;min-width:0;max-width:none;margin:10px 0 0}
+html.standalone header.hero .progress .count{font-size:22px}
+html.standalone header.hero .progress .label{order:3;white-space:nowrap;color:#F3F6F8;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+html.standalone header.hero .progress .bar{flex:1;margin:0;order:2}
+html.standalone header.hero .start-row{display:block}
+html.standalone header.hero .start-row .start{width:100%;justify-content:center;margin-top:16px;min-height:52px;font-size:17px}
 </style>
 </head>
 <body>
@@ -2830,7 +2844,7 @@ if(m&&+m[1]>=1&&+m[1]<=BASE.length)state.current=+m[1]-1;
 
 const $=id=>document.getElementById(id);
 /* Installed app (opened from the home screen): bottom tab bar and a slim top bar. ?app=1 shows it in a browser too. */
-const APP=(()=>{try{return matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||navigator.standalone===true||/[?&]app=1/.test(location.search||"");}catch(e){return false;}})();
+const APP=(()=>{try{return matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||navigator.standalone===true||/[?&]app=1/.test(location.search||"")||(()=>{try{if(/^android-app:\/\//.test(document.referrer||""))sessionStorage.setItem("rv-twa","1");return sessionStorage.getItem("rv-twa")==="1";}catch(e){return false;}})();}catch(e){return false;}})();
 if(APP)document.documentElement.classList.add("standalone");   /* the installed app looks exactly like the website */
 /* phones: the menu moves to a bar at the bottom of the screen (it lives outside the header there, so it can stay fixed) */
 (()=>{const nav=$("viewTabs"), home=nav.parentNode, after=nav.nextElementSibling; let mq;

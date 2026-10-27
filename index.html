@@ -2898,7 +2898,7 @@ function renderChrome(){
   $("stepsNav").setAttribute("aria-label",u.pathTitle);
   $("pathNote").innerHTML=u.pathNote;
   $("footer").innerHTML=u.footer+(APP?"":`<p class="foot-inst"><button type="button" class="btn inst-btn" data-install>${u.inBtn}</button></p>`)
-    +`<p class="foot-links"><button type="button" class="linkish" data-contact>${esc(u.ctLink)}</button> · <a href="privacy.html">${esc(u.ctPrivacy)}</a> · <a href="impressum.html">Impressum</a> · <a href="#delete-account">${esc(u.ctDelete)}</a></p>`;
+    +`<p class="foot-links"><button type="button" class="linkish" data-contact>${esc(u.ctLink)}</button> · <a href="privacy.html">${esc(u.ctPrivacy)}</a> · <a href="impressum.html">Impressum</a> · <a href="https://www.instagram.com/revert_community/" target="_blank" rel="noopener me">Instagram</a> · <a href="#delete-account">${esc(u.ctDelete)}</a></p>`;
   document.querySelectorAll("[data-install]").forEach(b=>{b.textContent="⤓ "+u.inBtn; b.hidden=APP;});
   renderQA(); renderSound(); renderQuran(); renderHeart(); renderWords(); renderDhikr(); renderPray(); renderCom(); renderAuth(); renderSources();
   $("brandTag").textContent=u.brandTag; $("brandCite").textContent=u.brandCite; $("btAr").hidden=false;

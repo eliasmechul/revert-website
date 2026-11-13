@@ -1024,7 +1024,12 @@ nav.steps{padding:16px 14px}
 
 /* Buttons get a little more warmth */
 .btn.primary{background:linear-gradient(180deg,color-mix(in srgb,var(--lapis) 88%,#fff),var(--lapis));box-shadow:0 8px 18px -10px color-mix(in srgb,var(--lapis) 80%,transparent)}
-.snd-fab{box-shadow:0 8px 24px rgba(0,0,0,.3),0 0 0 3px color-mix(in srgb,var(--gold) 40%,transparent)}
+/* The calm-sound button is a small sun: warm disc, white rays that turn slowly while a sound plays */
+.snd-fab{background:radial-gradient(circle at 35% 30%,#FFE9A8 0%,#F6C453 45%,#E89A2B 100%);color:#fff;box-shadow:0 6px 20px rgba(232,154,43,.45),0 0 0 3px color-mix(in srgb,var(--gold) 35%,transparent)}
+.snd-fab svg{width:28px;height:28px;filter:drop-shadow(0 1px 1px rgba(120,70,0,.35))}
+.snd-fab.on svg{animation:sunTurn 14s linear infinite}
+@keyframes sunTurn{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.snd-fab.on svg{animation:none!important}}
 /* Wordmark: Cormorant Garamond, at a calmer size */
 header.hero h1#title{font-family:"Cormorant Garamond","Palatino Linotype",Georgia,serif;font-weight:600;font-size:clamp(40px,6vw,64px);letter-spacing:.015em;line-height:1}
 .lockup{gap:16px}
@@ -2402,7 +2407,7 @@ html.standalone .app-home>.ah-card:first-child{position:relative;z-index:3;margi
 </div>
 
 <button type="button" class="snd-fab" id="sndFab" aria-expanded="false" aria-controls="sndPanel">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 12h2M7 8v8M11 5v14M15 8v8M19 10v4M21 12h0"/></svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
 </button>
 <div class="snd-panel" id="sndPanel" role="dialog" aria-labelledby="sndTitle" hidden>
   <div class="snd-head">
